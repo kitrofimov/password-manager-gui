@@ -1,0 +1,6 @@
+make column with button smaller
+create popup "are you sure you want to delete this password?"
+add password deleting behaviour
+add a form for creating new password pairs
+add cryprography!
+update pyproject.toml's description
