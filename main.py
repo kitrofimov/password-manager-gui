@@ -1,3 +1,7 @@
+# https://dearpygui.readthedocs.io/en/latest/
+# https://cryptography.io/en/latest/
+# https://pypi.org/project/python-dotenv/
+
 import dearpygui.dearpygui as dpg
 from window import set_up_ui
 
