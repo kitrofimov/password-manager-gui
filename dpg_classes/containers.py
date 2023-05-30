@@ -1,24 +1,22 @@
 import dearpygui.dearpygui as dpg
 import pandas as pd
+from dpg_classes import items, base
 
-if __name__ == '__main__':
-    import items
-else:
-    from dpg_classes import items
-
-class Container:
-    def add_child(self, child):
-        dpg.move_item(child.id, parent=self.id)
+class Container(base.BaseItem):
+    def add_child(self, child, before=0):
+        dpg.move_item(child.id, parent=self.id, before=before)
 
     def get_children(self):
         return dpg.get_item_children(self.id)
 
 
 class Window(Container):
-    def __init__(self, label):
+    def __init__(self, label=None, modal=False, show=True, no_title_bar=False,
+                 min_size=[100, 100], max_size=[30000, 30000]):
         self._children = []
         with dpg.stage() as stage:
-            self.id = dpg.add_window(label=label)
+            self.id = dpg.add_window(label=label, modal=modal, show=show, no_title_bar=no_title_bar,
+                                     min_size=min_size, max_size=max_size)
         self.stage = stage
 
     def submit(self):
@@ -56,9 +54,9 @@ class Menu(Container):
 
 
 class TableColumn(Container):
-    def __init__(self, label=None):
+    def __init__(self, label=None, init_width_or_weight=0):
         with dpg.stage():
-            self.id = dpg.add_table_column(label=label)
+            self.id = dpg.add_table_column(label=label, init_width_or_weight=init_width_or_weight)
 
 
 class TableRow(Container):
@@ -74,12 +72,16 @@ class TableCell(Container):
 
 
 class Table(Container):
-    def __init__(self, data: pd.DataFrame):
+    def __init__(self, data: pd.DataFrame, row_background=True,
+                 borders_outerH=True, borders_outerV=True,
+                 borders_innerH=True, borders_innerV=True):
         num_rows = data.shape[0]
         num_columns = data.shape[1]
 
         with dpg.stage():
-            self.id = dpg.add_table()
+            self.id = dpg.add_table(row_background=row_background,
+                                    borders_outerH=borders_outerH, borders_outerV=borders_outerV,
+                                    borders_innerH=borders_innerH, borders_innerV=borders_innerV)
 
             for column_i in range(num_columns):
                 column = TableColumn(data.columns[column_i])
@@ -93,3 +95,9 @@ class Table(Container):
                     cell.add_child(text)
                     row.add_child(cell)
                 self.add_child(row)
+                
+
+class Group(Container):
+    def __init__(self):
+        with dpg.stage():
+            self.id = dpg.add_group()

@@ -3,14 +3,12 @@
 # https://pypi.org/project/python-dotenv/
 
 import dearpygui.dearpygui as dpg
-from window import set_up_ui
+from app import App
 
 if __name__ == '__main__':
     dpg.create_context()
 
-    set_up_ui()
-
-    # dpg.show_item_registry()
+    app = App('./passwords.json', debug=False)
 
     dpg.setup_dearpygui()
     dpg.show_viewport()

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "password-manager-gui"
-version = "0.1.0"
+version = "0.1.1"
 description = "A password manager with GUI. Uses python cryptography module [NAME WHAT ENCRYPTION I USE]"
 authors = ["fahlerile"]
 license = "MIT"
