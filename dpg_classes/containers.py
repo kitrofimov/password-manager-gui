@@ -10,19 +10,6 @@ class Container(base.BaseItem):
         return dpg.get_item_children(self.id)
 
 
-class Window(Container):
-    def __init__(self, label=None, modal=False, show=True, no_title_bar=False,
-                 min_size=[100, 100], max_size=[30000, 30000]):
-        self._children = []
-        with dpg.stage() as stage:
-            self.id = dpg.add_window(label=label, modal=modal, show=show, no_title_bar=no_title_bar,
-                                     min_size=min_size, max_size=max_size)
-        self.stage = stage
-
-    def submit(self):
-        dpg.unstage(self.stage)
-
-
 class MenuBar(Container):
     def __init__(self, config=None):
         """
@@ -60,44 +47,47 @@ class TableColumn(Container):
 
 
 class TableRow(Container):
-    def __init__(self):
+    def __init__(self, children=None):
         with dpg.stage():
             self.id = dpg.add_table_row()
 
+            if children is not None:
+                for child in children:
+                    self.add_child(child)
+
 
 class TableCell(Container):
-    def __init__(self):
+    def __init__(self, children=None):
         with dpg.stage():
             self.id = dpg.add_table_cell()
 
+            if children is not None:
+                for child in children:
+                    self.add_child(child)
+
 
 class Table(Container):
-    def __init__(self, data: pd.DataFrame, row_background=True,
+    def __init__(self, children=None, row_background=True,
                  borders_outerH=True, borders_outerV=True,
-                 borders_innerH=True, borders_innerV=True):
-        num_rows = data.shape[0]
-        num_columns = data.shape[1]
+                 borders_innerH=True, borders_innerV=True,
+                 resizable=False, policy=0):
 
         with dpg.stage():
             self.id = dpg.add_table(row_background=row_background,
                                     borders_outerH=borders_outerH, borders_outerV=borders_outerV,
-                                    borders_innerH=borders_innerH, borders_innerV=borders_innerV)
-
-            for column_i in range(num_columns):
-                column = TableColumn(data.columns[column_i])
-                self.add_child(column)
-
-            for row_i in range(num_rows):
-                row = TableRow()
-                for cell_i in range(num_columns):
-                    cell = TableCell()
-                    text = items.Text(data.iloc[row_i][data.columns[cell_i]])
-                    cell.add_child(text)
-                    row.add_child(cell)
-                self.add_child(row)
+                                    borders_innerH=borders_innerH, borders_innerV=borders_innerV,
+                                    resizable=resizable, policy=policy)
+            
+            if children is not None:
+                for child in children:
+                    self.add_child(child)
                 
 
 class Group(Container):
-    def __init__(self):
+    def __init__(self, children: list=None):
         with dpg.stage():
             self.id = dpg.add_group()
+
+            if children is not None:
+                for child in children:
+                    self.add_child(child)

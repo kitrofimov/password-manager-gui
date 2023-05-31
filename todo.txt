@@ -1,6 +1,10 @@
 [to do]
+add password delete handler
+add creating passwords
+create popup for randomgenerating passwords and passphrases
+
 copy password when clicking on it
 add cryprography!
 update pyproject.toml's description
 add menubar functionality
-passphrase support in random maybe??
+refactor code in dpg_classes and overall
