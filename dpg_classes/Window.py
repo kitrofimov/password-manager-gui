@@ -3,12 +3,12 @@ from dpg_classes.containers import Container
 
 class Window(Container):
     def __init__(self, label=None, modal=False, show=True, no_title_bar=False,
-                 min_size=[100, 100], max_size=[30000, 30000]):
+                 min_size=[100, 100], max_size=[30000, 30000], tag=0):
         self.min_size = min_size
         self.max_size = max_size
         with dpg.stage() as stage:
             self.id = dpg.add_window(label=label, modal=modal, show=show, no_title_bar=no_title_bar,
-                                     min_size=min_size, max_size=max_size)
+                                     min_size=min_size, max_size=max_size, tag=tag)
         self.stage = stage
 
     def submit(self):

@@ -20,23 +20,23 @@ class Button(Item):
 
 
 class MenuItem(Item):
-    def __init__(self, label, callback=None):
+    def __init__(self, label, callback=None, user_data=None):
         with dpg.stage():
-            self.id = dpg.add_menu_item(label=label)
+            self.id = dpg.add_menu_item(label=label, user_data=user_data)
             super().__init__(callback=callback)
 
 
 class Text(Item):
-    def __init__(self, text):
+    def __init__(self, text, tag=0):
         with dpg.stage():
-            self.id = dpg.add_text(text)
+            self.id = dpg.add_text(text, tag=tag)
 
 
 class InputText(Item):
-    def __init__(self, callback=None, width=0, height=0, hint=None, password=False):
+    def __init__(self, callback=None, width=0, height=0, hint=None, password=False, tag=0):
         with dpg.stage():
             self.id = dpg.add_input_text(width=width, height=height,
-                                         password=password, hint=hint)
+                                         password=password, hint=hint, tag=tag)
             super().__init__(callback=callback)
 
 

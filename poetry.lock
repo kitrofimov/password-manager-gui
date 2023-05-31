@@ -131,6 +131,16 @@ test = ["hypothesis (>=6.34.2)", "pytest (>=7.0.0)", "pytest-asyncio (>=0.17.0)"
 xml = ["lxml (>=4.6.3)"]
 
 [[package]]
+name = "pyperclip"
+version = "1.8.2"
+description = "A cross-platform clipboard module for Python. (Only handles plain text for now.)"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyperclip-1.8.2.tar.gz", hash = "sha256:105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57"},
+]
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -177,7 +187,17 @@ files = [
     {file = "tzdata-2023.3.tar.gz", hash = "sha256:11ef1e08e54acb0d4f95bdb1be05da659673de4acbd21bf9c69e94cc5e907a3a"},
 ]
 
+[[package]]
+name = "xkcdpass"
+version = "1.19.3"
+description = "Generate secure multiword passwords/passphrases, inspired by XKCD"
+optional = false
+python-versions = "*"
+files = [
+    {file = "xkcdpass-1.19.3.tar.gz", hash = "sha256:c5a2e948746da6fe504e8404284f457d8e98da6df5047c6bb3f71b18882e9d2a"},
+]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "58d44e0d641d5df816a2d508f352a4359960095b218863971471d8bac5631bbc"
+content-hash = "adae8ae0e2229298c15ec37d54c7904d92f35d08fee0fcdd884bfaf4dbcb524a"

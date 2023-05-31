@@ -15,7 +15,10 @@ class MenuBar(Container):
         """
         config: [None|dict]=None - a dictionary in form {
             "menu_name": {
-                "menu_item_name": callback_for_this_menu_item
+                "menu_item_name": {
+                    "callback": None,
+                    "user_data": None
+                }
             }
         }
         """
@@ -24,12 +27,11 @@ class MenuBar(Container):
             self.id = dpg.add_menu_bar()
 
             if config is not None:
-                for menu_name, menu_item_names_callbacks_dict in config.items():
+                for menu_name, menu_item_options_dict in config.items():
                     menu = Menu(menu_name)
-                    for menu_item_name, menu_item_callback in menu_item_names_callbacks_dict.items():
-                        menu_item = items.MenuItem(menu_item_name)
-                        if menu_item_callback is not None:
-                            menu_item.set_callback(menu_item_callback)
+                    for menu_item_name, menu_item_options in menu_item_options_dict.items():
+                        menu_item = items.MenuItem(menu_item_name, user_data=menu_item_options.get('user_data'), \
+                                                   callback=menu_item_options.get('callback'))
                         menu.add_child(menu_item)
                     self.add_child(menu)
 
