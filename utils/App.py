@@ -1,40 +1,17 @@
 import pandas as pd
 import dearpygui.dearpygui as dpg
-from dpg_classes.Window import Window
 from dpg_classes import containers, items
 from utils import handlers
+from utils.AppWindow import AppWindow
 
 class App:
 
     def __init__(self, path_to_encrypted, debug):
         self.path_to_encrypted = path_to_encrypted
 
-        self.window = Window(min_size=[600, 400],
-                             max_size=[1000, 600])
-        self.window.submit()
-        self.window.create_viewport(title='Password Manager v.0.1.3',
-                                    size=[1000, 600])
-        self.window.set_primary()
-
-        self.window.add_child(
-            containers.MenuBar({
-                "File": {
-                    "Import": {
-                        "callback": None,
-                        "user_data": None
-                    },
-                    "Export": {
-                        "callback": None,
-                        "user_data": None
-                    },
-                    "Path to encrypted file": {
-                        "callback": None,
-                        "user_data": None
-                    }
-                }
-            })
-        )
-
+        self.window = AppWindow('Password Manager v.0.1.3', size=[1000, 600],
+                                min_size=[600, 400], max_size=[1000, 600])
+        
         self.render_contents()
 
         if debug:
