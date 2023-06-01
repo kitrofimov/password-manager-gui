@@ -27,9 +27,9 @@ class MenuItem(Item):
 
 
 class Text(Item):
-    def __init__(self, text, tag=0):
+    def __init__(self, text, tag=0, wrap=-1):
         with dpg.stage():
-            self.id = dpg.add_text(text, tag=tag)
+            self.id = dpg.add_text(text, tag=tag, wrap=wrap)
 
 
 class InputText(Item):

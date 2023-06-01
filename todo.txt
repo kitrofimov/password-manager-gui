@@ -1,6 +1,3 @@
 [to do]
-all contents to window?
-
-add cryprography!
-update pyproject.toml's description
-add menubar functionality
+add master pass
+refactor code

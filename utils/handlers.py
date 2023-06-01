@@ -5,6 +5,7 @@ import secrets
 from dpg_classes import items
 from xkcdpass import xkcd_password as xp
 import pyperclip
+from cryptography.fernet import Fernet
 
 def delete_button_click(_, __, user_data):
 
@@ -53,7 +54,7 @@ def create_button_click(_, __, user_data):
     else:
         new_df = pd.concat([
             app.df,
-            pd.DataFrame([[name, password]],
+            pd.DataFrame([[name, Fernet(app.key).encrypt(bytes(password, 'utf-8')).decode()]],
                         columns=['name', 'password'])
         ], axis=0).reset_index(drop=True)
         new_df.to_json(app.path_to_encrypted, orient='index', indent=4)
@@ -99,9 +100,17 @@ def generate_button_click(_, __, user_data):
     }, modal=True)
 
 
-def password_click(_, __, user_data):
+def password_click(button, __, user_data):
     index = user_data['index']
     app = user_data['app']
+    key = user_data['key']
 
-    pyperclip.copy(app.df.iloc[index]['password'])
-    popup = Popups.PopupOK('The password was copied to clipboard!', modal=False)
+    def hide_password(OKbutton):
+        dpg.set_item_label(button, 'Show')
+        dpg.delete_item(dpg.get_item_parent(dpg.get_item_parent(OKbutton)))
+
+
+    dpg.set_item_label(button, Fernet(key).decrypt(bytes(app.df.iloc[index]['password'], 'utf-8')).decode())
+
+    pyperclip.copy(Fernet(key).decrypt(bytes(app.df.iloc[index]['password'], 'utf-8')).decode())
+    popup = Popups.PopupOK('The password was copied to clipboard!', modal=False, callback=hide_password)

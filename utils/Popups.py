@@ -19,9 +19,11 @@ class Popup(Window):
 
 class PopupOK(Popup):
 
-    def __init__(self, text, user_data=None, tag=0, modal=True):
+    def __init__(self, text, user_data=None, tag=0, modal=True, callback=None, wrap=-1):
         super().__init__(children=[
-            items.Text(text),
+            items.Text(text, wrap=wrap),
+            items.Button('OK', callback=callback, user_data=user_data) \
+            if callback is not None else \
             items.Button('OK', callback=(lambda _: self.delete()), user_data=user_data)
         ], tag=tag, modal=modal)
 
