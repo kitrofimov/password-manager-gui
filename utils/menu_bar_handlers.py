@@ -9,7 +9,7 @@ def import_csv(_, __, user_data):
         df = pd.read_csv(path)
         df['password'] = df['password'].apply(lambda x: Fernet(key).encrypt(bytes(x, 'utf-8')).decode())
         df.to_json(app.path_to_encrypted, indent=4, orient='index')
-        app.render_contents(rerender=True)
+        app.render_window(rerender=True)
 
     app = user_data['app']
     key = user_data['key']
@@ -26,7 +26,7 @@ def export_csv(_, __, user_data):
     df = user_data['df']
     key = user_data['key']
 
-    with dpg.add_file_dialog(callback=get_path, height=500, modal=True, directory_selector=False):
+    with dpg.file_dialog(callback=get_path, height=500, modal=True, directory_selector=False):
         dpg.add_file_extension(".csv")
 
 
@@ -42,7 +42,7 @@ def change_enc_key(_, __, user_data):
             file.write(app.key)
         df['password'] = df['password'].apply(lambda x: Fernet(app.key).encrypt(bytes(x, 'utf-8')).decode())
         df.to_json(app.path_to_encrypted, orient='index', indent=4)
-        app.render_contents(rerender=True)
+        app.render_window(rerender=True)
 
         Popups.PopupOK('The encryption key was successfully changed!')
     except Exception as e:

@@ -33,10 +33,10 @@ class Text(Item):
 
 
 class InputText(Item):
-    def __init__(self, callback=None, width=0, height=0, hint=None, password=False, tag=0):
+    def __init__(self, callback=None, width=0, height=0, hint='', password=False, tag=0, label=None):
         with dpg.stage():
             self.id = dpg.add_input_text(width=width, height=height,
-                                         password=password, hint=hint, tag=tag)
+                                         password=password, hint=hint, tag=tag, label=label)
             super().__init__(callback=callback)
 
 

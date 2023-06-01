@@ -1,7 +1,3 @@
-# https://dearpygui.readthedocs.io/en/latest/
-# https://cryptography.io/en/latest/
-# https://pypi.org/project/python-dotenv/
-
 import dearpygui.dearpygui as dpg
 from utils.App import App
 
@@ -12,7 +8,7 @@ def main():
     userpath = Path(os.path.expanduser('~'))
     apppath = userpath / 'password_manager'
     apppath.mkdir(parents=False, exist_ok=True)
-    app = App('Password Manager v.0.1.3', apppath, debug=True)
+    app = App('Password Manager v.0.1.5', apppath, debug=True)
 
 
 if __name__ == '__main__':

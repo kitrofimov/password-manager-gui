@@ -19,7 +19,7 @@ def delete_button_click(_, __, user_data):
         if delete:
             new_df = app.df.drop(index).reset_index(drop=True)
             new_df.to_json(app.path_to_encrypted, orient='index', indent=4)
-            app.render_contents(rerender=True)
+            app.render_window(rerender=True)
 
     Popups.PopupChoice('Are you sure you want to delete this password?', tag='delete_or_no_popup',
                        buttons={
@@ -58,7 +58,7 @@ def create_button_click(_, __, user_data):
                         columns=['name', 'password'])
         ], axis=0).reset_index(drop=True)
         new_df.to_json(app.path_to_encrypted, orient='index', indent=4)
-        app.render_contents(rerender=True)
+        app.render_window(rerender=True)
 
         dpg.set_value(name_input_tag, '')
         dpg.set_value(password_input_tag, '')
