@@ -2,7 +2,7 @@ import dearpygui.dearpygui as dpg
 from App import App
 
 def main():
-    app = App('Password Manager v0.2.0', debug=True)
+    app = App('Password Manager v0.2.1', debug=False)
 
 
 if __name__ == '__main__':

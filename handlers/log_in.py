@@ -11,14 +11,14 @@ def set_master_password(sender, app_data, user_data):  # called as callback for 
     app = user_data['app']
 
     if len(values[0]) < 8:  # if the password is too small
-        with dpg.window(popup=True, modal=True, no_title_bar=True):
+        with dpg.window(popup=True) as popup:
             dpg.add_text('The MASTER PASSWORD cannot be less than 8 symbols!', wrap=270)
-            dpg.add_button(label='OK', callback=lambda x: dpg.delete_item(dpg.get_item_parent(x)))
+            dpg.add_button(label='OK', callback=lambda x: dpg.delete_item(popup))
 
     elif values[0] != values[1]:  # if two passwords mismatch
-        with dpg.window(popup=True, modal=True, no_title_bar=True):
+        with dpg.window(popup=True) as popup:
             dpg.add_text('Sorry, the passwords do not match!', wrap=270)
-            dpg.add_button(label='OK', callback=lambda x: dpg.delete_item(dpg.get_item_parent(x)))
+            dpg.add_button(label='OK', callback=lambda x: dpg.delete_item(popup))
 
     else:
         # hash the password and store it in apppath/.master, then render all contents as needed
@@ -39,3 +39,8 @@ def log_in(sender, app_data, user_data):  # called as a callback when user tries
     if hashlib.md5(dpg.get_value(input_bar).encode()).hexdigest() == hash:
         app.logged_in = True
         __delete_all_contents_and_render(app)
+    
+    else:
+        with dpg.window(popup=True):
+            dpg.add_text('Incorrect password')
+            dpg.add_button(label='OK', callback=lambda x: dpg.delete_item(dpg.get_item_parent(x)))

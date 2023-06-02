@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "password-manager-gui"
-version = "0.1.5"
+version = "0.2.1"
 description = "A password manager with GUI, which uses cryprography's Fernet encryption technique (https://cryptography.io/en/latest/fernet/)"
 authors = ["fahlerile"]
 license = "MIT"
