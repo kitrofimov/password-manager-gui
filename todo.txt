@@ -1,3 +1,0 @@
-[to do]
-add master pass
-refactor code

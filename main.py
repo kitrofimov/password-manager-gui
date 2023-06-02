@@ -1,14 +1,8 @@
 import dearpygui.dearpygui as dpg
-from utils.App import App
-
-import os
-from pathlib import Path
+from App import App
 
 def main():
-    userpath = Path(os.path.expanduser('~'))
-    apppath = userpath / 'password_manager'
-    apppath.mkdir(parents=False, exist_ok=True)
-    app = App('Password Manager v.0.1.5', apppath, debug=True)
+    app = App('Password Manager v0.2.0', debug=True)
 
 
 if __name__ == '__main__':

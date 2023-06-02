@@ -1,0 +1,7 @@
+digraph {
+  Handlers -> {Topbar Form Table}
+
+  Topbar -> {importPasswords exportPasswords changeEncryptionKey help pathToProgramsDirectory}
+  Form -> {setPassword deletePassword generatePassword}
+  Table -> showCopyPassword
+}

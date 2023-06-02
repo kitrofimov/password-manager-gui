@@ -1,0 +1,12 @@
+digraph {
+  Window -> {Topbar Table Form}
+
+  Topbar -> {File About}
+  File -> {Import Export ChangeEncryptionKey}
+  About -> {Help PathToProgramsDirectory}
+
+  Table -> {Headers Rows}
+  Rows -> Cells -> Text
+
+  Form -> {InputName InputPassword SubmitButton}
+}
