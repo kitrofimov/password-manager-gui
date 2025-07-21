@@ -1,5 +1,14 @@
 # wordman
 
+<div align="center">
+
+![preview](.github/preview.png)
+
+![license_mit](https://img.shields.io/badge/License-MIT-blue.svg)
+![language_python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)
+
+</div>
+
 A password manager written in Python using Dear PyGUI as a practice project in late May-June 2023. I am not an expert in cryptography, hence **cryprographical security is not guarranteed, use after your own risk!** I do not hold any responsibility. MIT-licensed.
 
 ## Building
