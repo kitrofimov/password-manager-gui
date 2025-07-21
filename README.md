@@ -1,10 +1,21 @@
-A password manager written in Python and Dear PyGUI as a practice project in late May-June 2023. <span style='color: red;'>**Although it has all the basic features, I wouldn't personally use it, because I am not an expert in cryptography**</span>, and, as I said, this was planned just as practice project to test my Dear PyGUI and software designing skills.
+# wordman
 
-# Install
-You can download the archive with Windows executable, or download and use it from the source code:
+A password manager written in Python using Dear PyGUI as a practice project in late May-June 2023. I am not an expert in cryptography, hence **cryprographical security is not guarranteed, use after your own risk!** I do not hold any responsibility. MIT-licensed.
+
+## Building
 ```
-git clone <this repository>
-cd password-manager-gui
+git clone https://github.com/kitrofimov/wordman/
+cd wordman
 poetry install
 poetry run python main.py
+```
+
+## Contributions
+The project is pretty much finished, but any contributions (issues, pull requests) are welcome!
+
+### Linting
+```bash
+poetry run ruff check .
+poetry run black .
+poetry run isort .
 ```

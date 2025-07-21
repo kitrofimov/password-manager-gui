@@ -1,23 +1,29 @@
-[tool.poetry]
-name = "password-manager-gui"
-version = "0.2.1"
-description = "A password manager with GUI, which uses cryprography's Fernet encryption technique (https://cryptography.io/en/latest/fernet/)"
-authors = ["fahlerile"]
-license = "MIT"
+[project]
+name = "wordman"
+version = "0.2.2"
+description = "A GUI password manager"
+authors = [
+    {name = "Kirill Trofimov",email = "kitrofimov39@gmail.com"}
+]
+license = {text = "MIT"}
 readme = "README.md"
-packages = [{include = "password_manager_gui"}]
+requires-python = ">=3.13"
+dependencies = [
+    "dearpygui (>=2.1.0,<3.0.0)",
+    "pandas (>=2.3.1,<3.0.0)",
+    "cryptography (>=45.0.5,<46.0.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-dearpygui = "^1.9.1"
-pandas = "^2.0.2"
-xkcdpass = "^1.19.3"
-pyperclip = "^1.8.2"
-
+[tool.poetry]
+package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-ipykernel = "^6.23.1"
+xkcdpass = "^1.20.0"
+pyperclip = "^1.9.0"
+ruff = "^0.12.4"
+black = "^25.1.0"
+isort = "^6.0.1"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"

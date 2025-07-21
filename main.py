@@ -1,11 +1,16 @@
 import dearpygui.dearpygui as dpg
+
 from App import App
 
+PROGRAM_NAME = "Wordman"
+VERSION = "v0.2.2"
+
+
 def main():
-    app = App('Password Manager v0.2.1', debug=False)
+    App(f"{PROGRAM_NAME} {VERSION}", debug=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dpg.create_context()
 
     main()
